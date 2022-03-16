@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Exercise</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Esercizio JS - 16/03/22</h1>
+
+      <div class="generatorSection">
+        <h2>Generatore di citazioni</h2>
+        <hr />
+        <div>
+          <button id="quoteBtn">Genera!</button>
+          <p id="quote"></p>
+        </div>
+      </div>
+      <!-- End of quote section -->
+
+      <div class="commentSection">
+        <h2>Lasciaci un commento!</h2>
+        <hr />
+        <div class="flexContainer">
+          <div class="inputDiv">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" />
+          </div>
+          <div class="inputDiv">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" />
+          </div>
+          <div class="imgDiv">
+            <label for="img">Immagine:</label>
+            <input type="text" name="img" id="img" />
+          </div>
+          <div class="textAreaDiv">
+            <textarea
+              rows="4"
+              id="message"
+              placeholder="Scrivi qui il tuo commento.."
+            ></textarea>
+          </div>
+          <button id="submit">Aggiungi commento</button>
+        </div>
+      </div>
+      <!-- End of comment section -->
+
+      <div id="comments" class="listOfComments"></div>
+    </div>
+    <!-- End of page wrapper -->
+
+    <script src="index.js"></script>
+  </body>
+</html>
