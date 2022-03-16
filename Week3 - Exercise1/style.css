@@ -1,0 +1,140 @@
+/* -------------------------------------------------------------------------- */
+/*                                  Universal                                 */
+/* -------------------------------------------------------------------------- */
+
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    background-color: #85afc7;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Main                                    */
+/* -------------------------------------------------------------------------- */
+
+.wrapper {
+    padding: 2em;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+button {
+    padding: 1em;
+    border-radius: 0.8em;
+    border: none;
+    background-color: #85afc7;
+    color: aliceblue;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 1em 0;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                  Sections                                  */
+/* -------------------------------------------------------------------------- */
+
+.generatorSection, .commentSection, .listOfComments {
+    /* display: flex;
+    justify-content: center; */
+    padding: 3em;
+    background-color: aliceblue;
+    border-radius: 2em;
+    max-width: 600px;
+    text-align: center;
+    margin: 2em auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Quote Generator                              */
+/* -------------------------------------------------------------------------- */
+
+.generatorSection div {
+    display: flex;
+    align-items: center;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                               Comment Section                              */
+/* -------------------------------------------------------------------------- */
+
+.commentSection .flexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    width: 100%;
+}
+
+.commentSection button {
+    max-width: 120px;
+    margin-left: auto;
+}
+
+.commentSection input, textarea {
+    background-color: #fff;
+    border-radius: 0.3em;
+    padding: 4px;
+    border: 2px solid #85afc7;
+}
+
+.commentSection .flexContainer>div {
+    padding: 1em;
+}
+
+.imgDiv, .textAreaDiv {
+    /* margin-bottom: 10px; */
+    width: 100%;
+}
+
+textarea, #img {
+    width: 100%;
+    resize: none;
+}
+
+label {
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              List of comments                              */
+/* -------------------------------------------------------------------------- */
+
+.comment {
+    padding: 2em;
+    margin: 2em 1em 4em 1em;
+    background-color: #85afc7;
+    border-radius: 10px;
+    position: relative;
+    height: 16em;
+}
+
+.comment img {
+    border-radius: 5em;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 8em;
+    border: 25px solid #85afc7;
+}
+
+.comment .userData {
+    text-align: right;
+}
+
+.comment .message {
+    width: 100%;
+    height: 80%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0.527);
+}
