@@ -20,9 +20,10 @@ q("#searchBtn").addEventListener("click", () => {
     movie.toLowerCase().includes(userString.value.toLowerCase())
   );
 
-  for (elem of filteredList) {
-    listContainer.innerHTML = `<li> ${elem} </li>`;
-  }
+  listContainer.innerHTML = filteredList
+    .map((movie) => `<li>${movie}</li>`)
+    .join("");
+
   if (filteredList.length === 0)
     listContainer.innerHTML = "Non ho trovato alcun risultato :(";
 });
