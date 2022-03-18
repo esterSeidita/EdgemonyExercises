@@ -13,9 +13,7 @@ const movies = [
   "Blade Runner",
 ];
 
-listContainer.innerHTML = movies.map((movie) => `<li>${movie}</li>`).join("");
-
-q("#searchBtn").addEventListener("click", () => {
+function listGenerator(input = "") {
   const filteredList = movies.filter((movie) =>
     movie.toLowerCase().includes(userString.value.toLowerCase())
   );
@@ -26,4 +24,11 @@ q("#searchBtn").addEventListener("click", () => {
 
   if (filteredList.length === 0)
     listContainer.innerHTML = "Non ho trovato alcun risultato :(";
+}
+
+userString.addEventListener("keyup", () => {
+  const input = userString.value;
+  listGenerator(input);
 });
+
+listGenerator();
