@@ -13,6 +13,7 @@ body {
     background-image: url("SL-121019-25870-26.jpg");
     background-size: cover;
     color: aliceblue;
+    scroll-behavior: smooth;
 
 }
 
@@ -45,14 +46,21 @@ button {
     margin-top: 10px;
     width: 170px;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+
 }
 
+button:hover {
+    transform: scale(1.07);
+    opacity: 0.9;
+}
 
 input {
     padding: 0.5em;
     border-radius: 0.5em;
     border: none;
     opacity: 0.8;
+    text-align: center;
 }
 
 
@@ -100,11 +108,14 @@ label {
     height: 200px;
     margin: 1em;
     border-radius: 0.5em;
-    background-color: #ffffff;
     color: black;
-    box-shadow: -17px -22px 139px 22px rgba(0, 0, 0, 0.55);
-    -webkit-box-shadow: -17px -22px 139px 22px rgba(0, 0, 0, 0.55);
-    -moz-box-shadow: -17px -22px 139px 22px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(193 197 220) 100%);
+    transition: all 0.3s ease-out;
+}
+
+.cards>div:hover {
+    transform: scale(1.1);
 }
 
 /* -------------------------------------------------------------------------- */
