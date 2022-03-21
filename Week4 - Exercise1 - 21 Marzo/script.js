@@ -5,14 +5,12 @@ const surnameInput = q("#surname");
 const numberInput = q("#number");
 const container = q("#addressBook");
 
-const addresses = [
-  { name: "Ester", surname: "Seidita", number: "372668268" },
-  { name: "Ester", surname: "Seidita", number: "372668268" },
-];
+const addresses = JSON.parse(localStorage.getItem("addresses"));
+
+console.log(addresses);
 
 const addressListGenerator = (value = "") => {
-  localStorage.setItem("addresses", JSON.stringify(addresses));
-  container.innerHTML = JSON.parse(localStorage.getItem("addresses"))
+  container.innerHTML = addresses
     .map((address, index) => {
       return `
         <div>
@@ -25,12 +23,13 @@ const addressListGenerator = (value = "") => {
     .join("");
 
   const deleteBtn = document.querySelectorAll(".deleteBtn");
+
   try {
     deleteBtn.forEach((btn) => {
       btn.addEventListener("click", () => {
         const index = btn.getAttribute("data-index");
         addresses.splice(index, 1);
-        console.log(index);
+        localStorage.setItem("addresses", JSON.stringify(addresses));
         addressListGenerator();
       });
     });
@@ -40,7 +39,6 @@ const addressListGenerator = (value = "") => {
       "afterend",
       "<p class = 'error'>Attenzione, errore nell'aggiunta del contatto!</p>"
     );
-    // p.textContent = "Attenzione, errore nell'aggiunta del contatto!";
   }
 };
 
@@ -50,6 +48,7 @@ newContactBtn.addEventListener("click", () => {
     surname: surnameInput.value,
     number: numberInput.value,
   });
+  localStorage.setItem("addresses", JSON.stringify(addresses));
   addressListGenerator();
 });
 

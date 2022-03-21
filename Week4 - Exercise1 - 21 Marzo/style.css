@@ -11,7 +11,7 @@
 
 body {
     font-family: 'Josefin Sans', sans-serif;
-    background-image: url("bg.jpg");
+    background-image: url("bg.webp");
     background-size: cover;
     color: aliceblue;
     scroll-behavior: smooth;
