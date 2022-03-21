@@ -13,19 +13,33 @@ const cards = q(".cards");
 const filter = q("#search");
 const inputName = q("#name");
 const inputUniverse = q("#universe");
+const localCharacters = JSON.parse(localStorage.getItem("char"));
+
+/* -------------------------------------------------------------------------- */
+/*                                Add New Card                                */
+/* -------------------------------------------------------------------------- */
 
 q("#add").addEventListener("click", () => {
   people.push([inputName.value, inputUniverse.value].join(" - "));
+  localStorage.setItem("char", people);
   cardsGenerator();
   inputName.value = "";
   inputUniverse.value = "";
 });
+
+/* -------------------------------------------------------------------------- */
+/*                                   Filter                                   */
+/* -------------------------------------------------------------------------- */
 
 filter.addEventListener("keyup", () => {
   let val = q("#search").value;
   console.log(val);
   cardsGenerator(val);
 });
+
+/* -------------------------------------------------------------------------- */
+/*                               Cards Generator                              */
+/* -------------------------------------------------------------------------- */
 
 function cardsGenerator(val = "") {
   let finalArray = [];
@@ -49,6 +63,8 @@ function cardsGenerator(val = "") {
     cards.innerHTML = "Nessun risultato trovato";
   }
 
+  // Delete Cards
+
   const deleteBtn = document.querySelectorAll(".deleteBtn");
 
   deleteBtn.forEach((btn) => {
@@ -60,5 +76,7 @@ function cardsGenerator(val = "") {
     });
   });
 }
+
+// End of function
 
 cardsGenerator();

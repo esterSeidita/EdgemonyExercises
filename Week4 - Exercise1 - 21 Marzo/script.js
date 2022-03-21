@@ -9,6 +9,10 @@ const filter = q("#filter");
 
 const addresses = JSON.parse(localStorage.getItem("addresses"));
 
+/* -------------------------------------------------------------------------- */
+/*                           Address List Generator                           */
+/* -------------------------------------------------------------------------- */
+
 const addressListGenerator = (value = "") => {
   const filteredList = addresses.filter((addressObj) =>
     addressObj.name.toLowerCase().includes(value.toLowerCase())
@@ -24,6 +28,8 @@ const addressListGenerator = (value = "") => {
         `;
     })
     .join("");
+
+  // Delete a contact
 
   const deleteBtn = document.querySelectorAll(".deleteBtn");
 
@@ -45,6 +51,12 @@ const addressListGenerator = (value = "") => {
   }
 };
 
+// End of function
+
+/* -------------------------------------------------------------------------- */
+/*                               Add New Contact                              */
+/* -------------------------------------------------------------------------- */
+
 newContactBtn.addEventListener("click", () => {
   addresses.push({
     name: nameInput.value,
@@ -55,7 +67,12 @@ newContactBtn.addEventListener("click", () => {
   addressListGenerator();
 });
 
+/* -------------------------------------------------------------------------- */
+/*                              Filter of Contact                             */
+/* -------------------------------------------------------------------------- */
+
 filter.addEventListener("keyup", () => {
   addressListGenerator(filter.value);
 });
+
 addressListGenerator();
