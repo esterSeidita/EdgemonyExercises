@@ -13,15 +13,17 @@ const cards = q(".cards");
 const filter = q("#search");
 const inputName = q("#name");
 const inputUniverse = q("#universe");
+
 const localCharacters = JSON.parse(localStorage.getItem("char"));
+localStorage.setItem("char", JSON.stringify(people));
 
 /* -------------------------------------------------------------------------- */
 /*                                Add New Card                                */
 /* -------------------------------------------------------------------------- */
 
 q("#add").addEventListener("click", () => {
-  people.push([inputName.value, inputUniverse.value].join(" - "));
-  localStorage.setItem("char", people);
+  localCharacters.push([inputName.value, inputUniverse.value].join(" - "));
+  localStorage.setItem("char", JSON.stringify(localCharacters));
   cardsGenerator();
   inputName.value = "";
   inputUniverse.value = "";
@@ -33,7 +35,7 @@ q("#add").addEventListener("click", () => {
 
 filter.addEventListener("keyup", () => {
   let val = q("#search").value;
-  console.log(val);
+  localStorage.setItem("char", JSON.stringify(localCharacters));
   cardsGenerator(val);
 });
 
@@ -43,8 +45,12 @@ filter.addEventListener("keyup", () => {
 
 function cardsGenerator(val = "") {
   let finalArray = [];
-  const filteredCards = people.filter((card) =>
+  const filteredCards = localCharacters.filter((card) =>
     card.toLowerCase().includes(val.toLowerCase())
+  );
+  console.log(
+    "🚀 ~ file: index.js ~ line 54 ~ cardsGenerator ~ filteredCards",
+    filteredCards
   );
 
   filteredCards.forEach((elem) => {
@@ -70,8 +76,8 @@ function cardsGenerator(val = "") {
   deleteBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
       const index = btn.getAttribute("data-index");
-      people.splice(index, 1);
-      console.log(index);
+      localCharacters.splice(index, 1);
+      localStorage.setItem("char", JSON.stringify(localCharacters));
       cardsGenerator();
     });
   });
