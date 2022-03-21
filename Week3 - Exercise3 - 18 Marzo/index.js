@@ -38,15 +38,27 @@ function cardsGenerator(val = "") {
     finalArray.push(elemArray);
   });
 
-  console.log(finalArray);
-
   cards.innerHTML = finalArray
-    .map((card) => `<div><h3>${card[0]}</h3><p>${card[1]}</p></div>`)
+    .map(
+      (card, index) =>
+        `<div><img class="deleteBtn" data-index="${index}" src="closeBtn.png"><h3>${card[0]}</h3><p>${card[1]}</p></div>`
+    )
     .join("");
 
   if (finalArray.length === 0) {
     cards.innerHTML = "Nessun risultato trovato";
   }
+
+  const deleteBtn = document.querySelectorAll(".deleteBtn");
+
+  deleteBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const index = btn.getAttribute("data-index");
+      people.splice(index, 1);
+      console.log(index);
+      cardsGenerator();
+    });
+  });
 }
 
 cardsGenerator();

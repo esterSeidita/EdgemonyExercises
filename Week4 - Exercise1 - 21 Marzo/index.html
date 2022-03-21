@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Rubrica</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Rubrica</h1>
+      <hr />
+    </header>
+
+    <div class="wrapper">
+      <div class="addressContainer">
+        <div class="addContainer">
+          <h2>Nuovo Contatto</h2>
+          <label for="name">Nome</label>
+          <input type="text" id="name" />
+          <label for="surname">Cognome</label>
+          <input type="text" id="surname" />
+          <label for="number">Numero</label>
+          <input type="text" id="number" />
+          <button id="newContactBtn">Aggiungi</button>
+        </div>
+      </div>
+
+      <div id="addressBook"></div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
