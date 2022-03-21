@@ -5,12 +5,15 @@ const surnameInput = q("#surname");
 const numberInput = q("#number");
 const container = q("#addressBook");
 
+const filter = q("#filter");
+
 const addresses = JSON.parse(localStorage.getItem("addresses"));
 
-console.log(addresses);
-
 const addressListGenerator = (value = "") => {
-  container.innerHTML = addresses
+  const filteredList = addresses.filter((addressObj) =>
+    addressObj.name.toLowerCase().includes(value.toLowerCase())
+  );
+  container.innerHTML = filteredList
     .map((address, index) => {
       return `
         <div>
@@ -52,4 +55,7 @@ newContactBtn.addEventListener("click", () => {
   addressListGenerator();
 });
 
+filter.addEventListener("keyup", () => {
+  addressListGenerator(filter.value);
+});
 addressListGenerator();
