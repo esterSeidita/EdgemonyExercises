@@ -21,11 +21,14 @@ const createCard = (data) => {
 
   // Element creation
   wrapper.innerHTML =
-  data.map((obj, index) => `<div data-desc="${obj.description}">
+  data.map((obj, index) => `<div>
+  <div data-desc="${obj.description}" class="num${index}" class="mainCard">
   <img class="deleteBtn" id="${index}" src="closeBtn.png">
-  <h2>${obj.title.split("").slice(0, 51).join("")}</h2>
+  <h2>${obj.title.split("").slice(0, 31).join("")}</h2>
   <img src="${obj.image}">
   <p class="price">${obj.price} €</p>
+  </div>
+  <button id="${index}" class="showDescriptionBtn">Show Description</button>
   </div>`);
   
 
@@ -35,7 +38,7 @@ const createCard = (data) => {
 
   deleteBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const index = btn.getAttribute("id");
+      const index = btn.id;
       data.splice(index, 1);
       createCard(data);
     });
@@ -43,18 +46,24 @@ const createCard = (data) => {
   });
   
   // Description on click
-  
-  const cards = document.querySelectorAll(".wrapper>div");
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      card.classList.toggle("swipe");
+
+  const descriptionBtn = document.querySelectorAll(".showDescriptionBtn");
+  descriptionBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // console.log((btn));
+      const card = q(`.num${btn.id}`);
+      card.classList.add("animate");
       const oldContent = card.innerHTML;
       card.innerHTML = `<p>${card.getAttribute("data-desc")}</p>`;
-      card.addEventListener("click", () => {
+      btn.textContent = "Turn Back";
+
+      btn.addEventListener("click", () => {
         card.innerHTML = oldContent;
+        btn.textContent = "Show Description";
       })
     })
   })
+
 
 }
 

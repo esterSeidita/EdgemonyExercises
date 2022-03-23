@@ -43,7 +43,7 @@ img {
 
 .wrapper>div {
     width: 200px;
-    height: 250px;
+    height: 270px;
     margin: 0 auto;
     text-align: center;
     border-radius: 1em;
@@ -67,6 +67,28 @@ img {
 
 }
 
+button {
+    padding: 0.5em;
+    border-radius: 0.8em;
+    border: none;
+    background-color: aliceblue;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.8s ease-out;
+
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+button:hover {
+    /* opacity: 0.7; */
+    background-color: rgba(123, 157, 207, 0.658);
+}
+
 .closedeleteBtnBtn img {
     width: 10px;
 }
@@ -87,3 +109,11 @@ h2, p {
 /* -------------------------------------------------------------------------- */
 /*                               Cards Animation                              */
 /* -------------------------------------------------------------------------- */
+
+.animate {
+    /* transform: rotateY(180deg); */
+    /* transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative; */
+}
