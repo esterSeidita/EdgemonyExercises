@@ -9,42 +9,52 @@ const getAPI = async(URL) => {
 }
 
 getAPI("https://fakestoreapi.com/products").then((data) => {
-  console.log(data);
-  data.map((product) => {
-    createCard(product.title, product.image, product.description, product.price);
-  })
+  createCard(data);
 })
 
-const getShortText = (text) => {
+/* -------------------------------------------------------------------------- */
+/*                            Create Card Function                            */
+/* -------------------------------------------------------------------------- */
+
+
+const createCard = (data) => {
+
+  // Element creation
+  wrapper.innerHTML =
+  data.map((obj, index) => `<div>
+  <img class="deleteBtn" id="${index}" src="closeBtn.png">
+  <h2>${obj.title.split("").slice(0, 51).join("")}</h2>
+  <img src="${obj.image}" nmjb>
+  <p data-desc="${obj.description}>${obj.description}</p>
+  <p class="price">${obj.price} €</p>
+  </div>`);
+  
+
+  // Delete Cards
+
+  const deleteBtn = document.querySelectorAll(".deleteBtn");
+
+  deleteBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const index = btn.getAttribute("id");
+      data.splice(index, 1);
+      createCard(data);
+    });
+
+    // Description on click
+    
+    // const cards = document.querySelectorAll(".wrapper>div");
+    // cards.forEach((card) => {
+    //   card.addEventListener("click", () => {
+    //     card.classList.add("animated");
+    //     card.innerHTML =`<p>${card.getAttribute("data-desc")}</p>`;
+    //   })
+    // })
+  });
+
+
 
 }
-const createCard = (title, img, description, price) => {
-  const divEl = document.createElement('div');
-  const h2El = document.createElement('h2');
-  const imgEl = document.createElement('img');
-  const parDescEl = document.createElement('p');
-  const parPriceEl = document.createElement('p');
-  
-  divEl.setAttribute('data-desc', description);
-  imgEl.setAttribute('src', img);
-  parPriceEl.classList.add('price');
 
-  h2El.textContent = title.split("").slice(0, 51).join("");
-  parDescEl.textContent = description;
-  parPriceEl.textContent = price + " €";
 
-  wrapper.appendChild(divEl);
-  divEl.append(h2El, imgEl, parPriceEl);
-  
-  const cards = document.querySelectorAll(".wrapper>div");
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      card.classList.add("animated");
-      card.innerHTML =`<p>${card.getAttribute("data-desc")}</p>`;
-      // card.addEventListener("click", () => {
-      //   card.textContent = "";
-      //   card.append(h2El, imgEl, parPriceEl)
-      // })
-    })
-  })
-}
+

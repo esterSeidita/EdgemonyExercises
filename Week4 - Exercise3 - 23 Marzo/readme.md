@@ -1,18 +1,15 @@
-# Lezione del 22/03/2021
+# Lezione del 23/03/2021
 
 ### Esercizio
 
 Sulla base della lezione odierna:
 
-1. Creare una funzione che chieda all'utente di inserire 2 numeri tramite prompt e che faccia il console.log della somma soltanto dopo 10 secondi. // ATTENZIONE: Questa funzione non 'renderizza' alcunchè all'interno della pagina HTML, eccetto il prompt che chiede i numeri all'utente. Scegliete saggiamente tra setInterval e setTimeout!
+Creare una chiamata API all'indirizzo https://fakestoreapi.com/products, in modo che:
 
-La presenza di un bottone però potrebbe annullare quel intervallo!
+- Vengano catturati tutti gli elementi presenti nell'array
+- Renderizzare delle cards relative a ogni singolo oggetto
+- Al click sulla card (quindi il singolo prodotto), questo viene rimosso dalla lista
 
-2. Completate l'esercitazione di ieri, per chi l'avesse fatto, passate pure all'avanzato!
+Fondamentale:
 
-#### Avanzato:
-
-2. Riprendendo l'esercizio lasciato Venerdì scorso, provate a sostituire l'array di elementi con una chiamata fetch.
-   Utilizzate le API presenti a questo indirizzo: https://swapi.dev/
-
-(Tips. leggete la documentazione!)
+- Utilizzare fetch per la chiamata, ma gestire il tutto servendoci di async/await!!

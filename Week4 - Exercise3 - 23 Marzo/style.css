@@ -16,7 +16,7 @@ body {
 
 header {
     padding: 2em;
-    background-color: rgb(8, 14, 70);
+    background-color: rgb(1, 15, 29);
     color: aliceblue;
 }
 
@@ -37,20 +37,38 @@ img {
     justify-content: stretch;
     gap: 20px;
     flex-wrap: wrap;
-    background-color: rgba(11, 43, 95, 0.575);
+    background-color: rgba(141, 154, 173, 0.575);
     padding: 2em;
 }
 
 .wrapper>div {
     width: 200px;
-    height: 200px;
+    height: 250px;
     margin: 0 auto;
     text-align: center;
     border-radius: 1em;
-    padding: 1em;
+    padding: 3em 1em 1em 1em;
     background-color: white;
     overflow: auto;
     overflow-x: hidden;
+    box-shadow: 6px 2px 17px 0px rgba(0, 0, 0, 0.43);
+    -webkit-box-shadow: 6px 2px 17px 0px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 6px 2px 17px 0px rgba(0, 0, 0, 0.43);
+    position: relative;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+
+}
+
+.closedeleteBtnBtn img {
+    width: 10px;
 }
 
 .wrapper>div:hover {
@@ -65,3 +83,7 @@ img {
 h2, p {
     font-size: 0.8rem;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                               Cards Animation                              */
+/* -------------------------------------------------------------------------- */
