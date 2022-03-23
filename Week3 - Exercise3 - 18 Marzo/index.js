@@ -1,4 +1,3 @@
-const q = (selector) => document.querySelector(selector);
 const people = [
   "Luke Skywalker - Star Wars",
   "Jack Burton - Grosso guaio a Chinatown",
@@ -9,13 +8,40 @@ const people = [
   "Eleven - Stranger Things",
 ];
 
+/* -------------------------------------------------------------------------- */
+/*                                  Fetch API                                 */
+/* -------------------------------------------------------------------------- */
+    //  const getAPIdata = async(URL, item = '') => {
+    //    const res = await fetch(`${URL}${item}`);
+    //    return await res.json();
+    //  }
+     
+    //  getAPIdata('https://swapi.dev/api/people').then((dataPerson)=> {
+    //    console.log(dataPerson.results.map((person) => `${person.name} - ${person.homeworld}`));
+    //    getAPIdata(dataPerson.homeworld).then((dataPlanet) => {
+    //     console.log(dataPlanet.results.map((planet) => `${planet.name}`))
+    //    })
+
+    // });
+    //  console.log("🚀 ~ file: index.js ~ line 20 ~ peopleData", peopleData)
+    
+  /* -------------------------------------------------------------------------- */
+  /*                            Costanti e Variabili                            */
+  /* -------------------------------------------------------------------------- */
+
+const q = (selector) => document.querySelector(selector);
+
+
 const cards = q(".cards");
 const filter = q("#search");
 const inputName = q("#name");
 const inputUniverse = q("#universe");
 
+
+
 const localCharacters = JSON.parse(localStorage.getItem("char"));
 localStorage.setItem("char", JSON.stringify(people));
+
 
 /* -------------------------------------------------------------------------- */
 /*                                Add New Card                                */
@@ -43,14 +69,10 @@ filter.addEventListener("keyup", () => {
 /*                               Cards Generator                              */
 /* -------------------------------------------------------------------------- */
 
-function cardsGenerator(val = "") {
+function cardsGenerator(val = "", array) {
   let finalArray = [];
   const filteredCards = localCharacters.filter((card) =>
     card.toLowerCase().includes(val.toLowerCase())
-  );
-  console.log(
-    "🚀 ~ file: index.js ~ line 54 ~ cardsGenerator ~ filteredCards",
-    filteredCards
   );
 
   filteredCards.forEach((elem) => {

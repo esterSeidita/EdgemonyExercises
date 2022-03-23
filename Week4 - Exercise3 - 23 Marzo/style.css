@@ -1,0 +1,67 @@
+/* -------------------------------------------------------------------------- */
+/*                                  Universal                                 */
+/* -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
+header {
+    padding: 2em;
+    background-color: rgb(8, 14, 70);
+    color: aliceblue;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Cards                                   */
+/* -------------------------------------------------------------------------- */
+
+img {
+    height: 100px;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.wrapper {
+    display: flex;
+    /* justify-content: flex-start; */
+    /* align-content: flex-end; */
+    justify-content: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    background-color: rgba(11, 43, 95, 0.575);
+    padding: 2em;
+}
+
+.wrapper>div {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 1em;
+    padding: 1em;
+    background-color: white;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.wrapper>div:hover {
+    transform: scale(1.1);
+}
+
+.price {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+h2, p {
+    font-size: 0.8rem;
+}
