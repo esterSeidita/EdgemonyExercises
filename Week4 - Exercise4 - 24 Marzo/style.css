@@ -1,0 +1,270 @@
+/* -------------------------------------------------------------------------- */
+/*                                  Universal                                 */
+/* -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    scroll-behavior: smooth;
+    background-color: rgba(209, 220, 235, 0.158);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Modal                                   */
+/* -------------------------------------------------------------------------- */
+
+
+.hidden {
+    display: block;
+    padding: 6em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    text-align: center;
+    border-radius: 1em;
+    z-index: 100;
+}
+
+.hidden h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.hidden p {
+    font-size: 1.5rem;
+    line-height: 1.5em;
+}
+
+.hidden img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.darker {
+    background-color: rgba(0, 0, 0, 0.582);
+    height: 100vh;
+    transition: all 1s ease-out;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Main                                    */
+/* -------------------------------------------------------------------------- */
+
+
+header {
+    padding: 2em;
+    background-color: rgb(9, 16, 32);
+    background-size: cover;
+    background-position: center;
+}
+
+
+header h1 {
+    opacity: 1;
+    color: rgb(224, 224, 224);
+    z-index: 100;
+}
+
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 2em;
+    position: relative;
+    perspective: 1000px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Form                                    */
+/* -------------------------------------------------------------------------- */
+
+form {
+    padding: 2em 0;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.inputGroup {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+label {
+    display: block;
+    line-height: 20px;
+}
+
+#submit {
+    padding: 0.5em;
+    margin: 1em auto;
+
+}
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    Cards                                   */
+/* -------------------------------------------------------------------------- */
+.cardsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+
+}
+
+.card {
+    position: relative;
+    width: 200px;
+    max-height: 400px;
+    text-align: center;
+    background-color: rgb(3, 3, 26);
+    border-radius: 1em;
+    color: aliceblue;
+    box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card h3 {
+    margin: 1em auto;
+}
+
+.card p {
+    margin-bottom: 2em;
+}
+
+.closeCardBtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.cardImg {
+    max-width: 100%;
+    /* object-fit: scale-down; */
+    border-radius: 1em;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* .singleCard {
+    background: #ffffff;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.6s;
+    -webkit-transition: transform 0.6s;
+    transform-style: preserve-3d;
+} */
+
+/* .frontCard,
+.backCard {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .singleCard.flip {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    background-color: #20263f;
+    color: aliceblue;
+    padding: 2em;
+    align-items: center;
+
+} */
+
+/* .singleCard.flip .deleteBtn {
+    display: none;
+}
+
+
+.frontCard {
+    height: 100%;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+} */
+
+/* .backCard {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    position: absolute;
+    text-align: center;
+    right: 0;
+    left: 0;
+    top: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.frontCard small {
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+    color: rgb(20, 58, 184);
+    font-weight: bold;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 Responsive                                 */
+/* -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-content: center;
+        position: relative;
+        perspective: 1000px;
+        align-items: stretch;
+    }
+
+    .singleCard {
+        width: 20%;
+    }
+}

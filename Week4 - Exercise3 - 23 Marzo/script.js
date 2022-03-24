@@ -49,7 +49,7 @@ const createCard = (data) => {
 
   });
   
-  // Description on click
+  // Description on click -- with button
 
   // const descriptionBtn = document.querySelectorAll(".showDescriptionBtn");
   // descriptionBtn.forEach((btn) => {

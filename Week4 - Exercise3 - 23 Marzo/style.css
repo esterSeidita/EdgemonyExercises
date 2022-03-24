@@ -63,6 +63,7 @@ h2, p {
     box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
     cursor: pointer;
     text-align: center;
+    transition: transform 0.6s;
     -webkit-transition: transform 0.6s;
     transform-style: preserve-3d;
 }
