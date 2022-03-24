@@ -20,6 +20,19 @@ header {
     color: aliceblue;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 2em;
+    position: relative;
+    perspective: 1000px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                    Cards                                   */
 /* -------------------------------------------------------------------------- */
@@ -30,31 +43,79 @@ img {
     padding: 10px;
 }
 
-.wrapper {
-    display: flex;
-    /* justify-content: flex-start; */
-    /* align-content: flex-end; */
-    justify-content: stretch;
-    gap: 20px;
-    flex-wrap: wrap;
-    background-color: rgba(141, 154, 173, 0.575);
-    padding: 2em;
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.wrapper>div {
-    width: 200px;
-    height: 270px;
-    margin: 0 auto;
+h2, p {
+    font-size: 0.8rem;
+}
+
+.singleCard {
+    background: #ffffff;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
     text-align: center;
-    border-radius: 1em;
-    padding: 3em 1em 1em 1em;
-    background-color: white;
-    overflow: auto;
-    overflow-x: hidden;
-    box-shadow: 6px 2px 17px 0px rgba(0, 0, 0, 0.43);
-    -webkit-box-shadow: 6px 2px 17px 0px rgba(0, 0, 0, 0.43);
-    -moz-box-shadow: 6px 2px 17px 0px rgba(0, 0, 0, 0.43);
-    position: relative;
+    -webkit-transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.frontCard,
+.backCard {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.singleCard.flip {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    background-color: #20263f;
+    color: aliceblue;
+    padding: 2em;
+    align-items: center;
+
+}
+
+.singleCard.flip .deleteBtn {
+    display: none;
+}
+
+
+.frontCard {
+    height: 100%;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+}
+
+.backCard {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    position: absolute;
+    text-align: center;
+    right: 0;
+    left: 0;
+    top: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.frontCard small {
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+    color: rgb(20, 58, 184);
+    font-weight: bold;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .deleteBtn {
@@ -64,56 +125,20 @@ img {
     width: 40px;
     height: 40px;
     cursor: pointer;
-
 }
 
-button {
-    padding: 0.5em;
-    border-radius: 0.8em;
-    border: none;
-    background-color: aliceblue;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.8s ease-out;
+@media (min-width: 768px) {
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-content: center;
+        position: relative;
+        perspective: 1000px;
+        align-items: stretch;
+    }
 
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-}
-
-button:hover {
-    /* opacity: 0.7; */
-    background-color: rgba(123, 157, 207, 0.658);
-}
-
-.closedeleteBtnBtn img {
-    width: 10px;
-}
-
-.wrapper>div:hover {
-    transform: scale(1.1);
-}
-
-.price {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-h2, p {
-    font-size: 0.8rem;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                               Cards Animation                              */
-/* -------------------------------------------------------------------------- */
-
-.animate {
-    /* transform: rotateY(180deg); */
-    /* transition: 0.6s;
-    transform-style: preserve-3d;
-
-    position: relative; */
+    .singleCard {
+        width: 20%;
+    }
 }

@@ -21,15 +21,19 @@ const createCard = (data) => {
 
   // Element creation
   wrapper.innerHTML =
-  data.map((obj, index) => `<div>
-  <div data-desc="${obj.description}" class="num${index}" class="mainCard">
+  data.map((obj, index) => 
+  `<div class="singleCard">
   <img class="deleteBtn" id="${index}" src="closeBtn.png">
-  <h2>${obj.title.split("").slice(0, 31).join("")}</h2>
-  <img src="${obj.image}">
-  <p class="price">${obj.price} €</p>
-  </div>
-  <button id="${index}" class="showDescriptionBtn">Show Description</button>
-  </div>`);
+      <div class="num${index} frontCard">
+        <img class="productImage" src="${obj.image}">
+        <h2>${obj.title.split("").slice(0, 31).join("")}</h2>
+        <p class="price">${obj.price} €</p>
+        <small>Click and Flip!</small>
+      </div>
+      <div class="num${index} backCard">
+        <p class="description">${obj.description}</p>
+      </div>
+  </div>`).join("");
   
 
   // Delete Cards
@@ -47,24 +51,34 @@ const createCard = (data) => {
   
   // Description on click
 
-  const descriptionBtn = document.querySelectorAll(".showDescriptionBtn");
-  descriptionBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // console.log((btn));
-      const card = q(`.num${btn.id}`);
-      card.classList.add("animate");
-      const oldContent = card.innerHTML;
-      card.innerHTML = `<p>${card.getAttribute("data-desc")}</p>`;
-      btn.textContent = "Turn Back";
+  // const descriptionBtn = document.querySelectorAll(".showDescriptionBtn");
+  // descriptionBtn.forEach((btn) => {
+  //   btn.addEventListener("click", () => {
+  //     // console.log((btn));
+  //     const card = q(`.num${btn.id}`);
+  //     card.classList.add("animate");
+  //     const oldContent = card.innerHTML;
+  //     card.innerHTML = `<p>${card.getAttribute("data-desc")}</p>`;
+  //     btn.textContent = "Turn Back";
 
-      btn.addEventListener("click", () => {
-        card.innerHTML = oldContent;
-        btn.textContent = "Show Description";
-      })
-    })
+  //     btn.addEventListener("click", () => {
+  //       card.innerHTML = oldContent;
+  //       btn.textContent = "Show Description";
+  //     })
+  //   })
+  // })
+
+  // Description on click
+  
+  const cards = document.querySelectorAll(".singleCard");
+
+  function flipCard() {
+    this.classList.toggle("flip");
+  }
+
+  cards.forEach((card) => {
+    card.addEventListener("click",  flipCard)
   })
-
-
 }
 
 
