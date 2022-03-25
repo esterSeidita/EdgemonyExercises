@@ -9,7 +9,7 @@ const posterInput = q("#poster");
 const yearInput = q("#year");
 const pageWrapper = q(".pageWrapper");
 
-const getMoviesAPI = async(URL) =>{
+const getMoviesAPI = async (URL) => {
   const res = await fetch(URL);
   return res.json();
 }
@@ -18,7 +18,6 @@ const createCard = (title, description, poster, id) => {
   const divEl = c('div');
   const h3El = c('h3');
   const imgEl = c('img');
-  const pDescEl = c('p');
   const closeBtn = c('img');
 
   imgEl.setAttribute('src', poster);
@@ -29,58 +28,62 @@ const createCard = (title, description, poster, id) => {
   imgEl.classList.add("cardImg");
 
   h3El.textContent = title;
-  pDescEl.textContent = description;
 
-  divEl.append(closeBtn, imgEl, h3El, pDescEl);
+  divEl.append(closeBtn, imgEl, h3El);
   wrapper.appendChild(divEl);
 
   closeBtn.addEventListener("click", () => {
     fetch(`https://edgemony-backend.herokuapp.com/movies/${id}`, {
       method: "DELETE",
-      headers: {'Content-Type': "application/json" }
-  }
-    ).then((data) => {location.reload()})
+      headers: {
+        'Content-Type': "application/json"
+      }
+    }).then((data) => {
+      location.reload()
+    })
   })
 
   divEl.addEventListener("click", () => {
     const lastContent = pageWrapper.innerHTML;
-    const modal = q("#hidden");    
+    const modal = q("#hidden");
     modal.classList.add("hidden");
 
     modal.innerHTML = `<h3>Descrizione:</h3><img class="closeBtn" src="closeBtn.png"><p>${description}</p>`;
-    closeModal= q(".closeBtn");
-    pageWrapper.innerHTML="";
+    closeModal = q(".closeBtn");
+    pageWrapper.innerHTML = "";
     pageWrapper.classList.add('darker');
-    
+
     closeModal.addEventListener("click", () => {
       pageWrapper.innerHTML = lastContent;
       console.log(lastContent);
       modal.classList.remove("hidden");
-      modal.innerHTML= "";
+      modal.innerHTML = "";
       pageWrapper.classList.remove("darker");
       location.reload();
     })
-    
+
   })
 
 }
 
 
 getMoviesAPI("https://edgemony-backend.herokuapp.com/movies")
-.then((data) => {
-  data.map((obj) =>
-    createCard(obj.title, obj.description, obj.poster, obj.id)
-  )
-})
+  .then((data) => {
+    data.map((obj) =>
+      createCard(obj.title, obj.description, obj.poster, obj.id)
+    )
+  })
 
 
 submitInput.addEventListener("click", (event) => {
   event.preventDefault();
   fetch("https://edgemony-backend.herokuapp.com/movies/", {
     method: "POST",
-    headers: {'Content-Type' : 'application/json'},
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
-      description: descriptionInput.value.split("").slice(0,45).join("") + "...",
+      description: descriptionInput.value,
       genres: ["animation"],
       poster: posterInput.value,
       title: titleInput.value,
