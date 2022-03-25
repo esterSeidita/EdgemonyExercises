@@ -19,17 +19,20 @@ const createCard = (title, description, poster, id) => {
   const h3El = c('h3');
   const imgEl = c('img');
   const closeBtn = c('img');
+  const updateBtn = c('img');
 
   imgEl.setAttribute('src', poster);
   closeBtn.setAttribute('src', "closeBtn.png");
+  updateBtn.setAttribute('src', "update.png");
 
   divEl.classList.add("card");
   closeBtn.classList.add("closeCardBtn");
+  updateBtn.classList.add("updateCardBtn");
   imgEl.classList.add("cardImg");
 
   h3El.textContent = title;
 
-  divEl.append(closeBtn, imgEl, h3El);
+  divEl.append(closeBtn, updateBtn, imgEl, h3El);
   wrapper.appendChild(divEl);
 
   closeBtn.addEventListener("click", () => {
@@ -42,6 +45,42 @@ const createCard = (title, description, poster, id) => {
       location.reload()
     })
   })
+
+  updateBtn.addEventListener("click", () => {
+    const lastContent = pageWrapper.innerHTML;
+    const modal = q("#hidden");
+    modal.classList.add("hidden");
+    const formEl = q('form').innerHTML;
+
+    modal.innerHTML = `<img class="closeBtn" src="closeBtn.png"> ${formEl}`;
+    closeModal = q(".closeBtn");
+    pageWrapper.innerHTML = "";
+    pageWrapper.classList.add('darker');
+
+    // fetch(`https://edgemony-backend.herokuapp.com/movies/${id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     'Content-Type': "application/json"
+    //   },
+    //   // body: json.stringify({
+
+    //   // }),
+    // }).then((data) => {
+    //   location.reload()
+    // })
+
+    closeModal.addEventListener("click", () => {
+      pageWrapper.innerHTML = lastContent;
+      console.log(lastContent);
+      modal.classList.remove("hidden");
+      modal.innerHTML = "";
+      pageWrapper.classList.remove("darker");
+      location.reload();
+    })
+  })
+
+
+
 
   divEl.addEventListener("click", () => {
     const lastContent = pageWrapper.innerHTML;
