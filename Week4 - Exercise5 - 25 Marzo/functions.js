@@ -23,6 +23,7 @@ const createCard = (title, description, poster, year, genres, id) => {
     imgEl.setAttribute('src', poster);
 
     divEl.classList.add("card");
+    divEl.classList.add("cardMovie");
     divEl.setAttribute("data-title", title);
     divEl.setAttribute("data-desc", description);
     divEl.setAttribute("data-img", poster);

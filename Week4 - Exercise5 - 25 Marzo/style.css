@@ -5,17 +5,17 @@
 
 * {
     box-sizing: border-box;
-    margin: 0 auto;
-    padding: 0;
+    margin: 0;
+    padding: 0 auto;
 }
 
 body {
     font-family: 'Josefin Sans', sans-serif;
     scroll-behavior: smooth;
-    background-color: rgba(209, 220, 235, 0.158);
+    background-color: white;
 }
 
-button {
+button, #submit, #submitUpdate {
     padding: 0.5em;
     border: none;
     border-radius: 0.5em;
@@ -24,7 +24,7 @@ button {
     transition: all 0.5s ease-out;
 }
 
-button:hover {
+button:hover, #submit:hover, #submitUpdate:hover {
     transform: scale(1.1);
     opacity: 0.9;
 }
@@ -54,8 +54,8 @@ button:hover {
 
 .modalWrap {
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
-    justify-content: stretch;
 }
 
 .modal {
@@ -69,32 +69,45 @@ button:hover {
     text-align: left;
     border-radius: 1em;
     z-index: 150;
-    height: fit-content;
     max-height: 90%;
+    width: 75%;
+}
+
+.mainModal {
+    justify-self: flex-start;
 }
 
 .modal h2 {
     text-align: center;
+    font-size: 1rem;
     margin-top: 1em;
 }
 
 .modal h3 {
-    font-size: 2rem;
+    font-size: 1rem;
     margin-bottom: 20px;
 }
 
 .modal p {
     font-size: 0.8rem;
-    /* line-height: 1.5em; */
     margin: 1em;
-    padding: 1em;
+    padding: 0;
 }
 
 .modal .modalImage {
     width: 100%;
-
+    object-fit: cover;
+    max-height: 35%;
     border-radius: 1em 1em 0 0;
 }
+
+
+.actions {
+    margin-left: 10px;
+    font-size: 0.8rem;
+}
+
+
 
 
 .deleteCardBtn {
@@ -113,7 +126,7 @@ button:hover {
 
 .modal.updateFormModal {
     flex-direction: column;
-    padding: 2em;
+    padding: 0;
 }
 
 .modal .flexItem>label {
@@ -126,16 +139,20 @@ button:hover {
 
 .modal .checkItem {
     display: inline-block;
-    margin-left: 4em;
+    margin-left: 1em;
 }
 
 .modal fieldset {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    border: none;
 }
 
-
+#submitUpdate {
+    background-color: black;
+    margin-bottom: 1em;
+}
 
 
 
@@ -145,11 +162,14 @@ button:hover {
 
 
 header {
-    padding: 2em;
-    background-color: rgb(9, 16, 32);
     background-size: cover;
     background-position: center;
     z-index: -2;
+    text-align: center;
+}
+
+header>img {
+    width: 130px;
 }
 
 
@@ -180,6 +200,7 @@ form {
     margin: 1em;
     gap: 20px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     width: 90%;
     max-width: 1000px;
@@ -187,10 +208,18 @@ form {
     border: 3px solid rgb(3 3 26);
     border-radius: 1em;
     max-width: 600px;
+    display: none;
+    z-index: 200;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
 }
 
 .inputGroup {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: space-around;
 }
@@ -200,13 +229,17 @@ label {
     line-height: 20px;
 }
 
-#submit {
+#submit, .closeFormBtn {
     padding: 0.8em 1em;
     margin: 1em auto;
     border-radius: 0.5em;
     background-color: rgb(3 3 26);
     border: none;
     color: aliceblue;
+}
+
+.closeFormBtn {
+    background-color: brown;
 }
 
 .checkboxGroup {
@@ -235,18 +268,19 @@ label {
 .cardsWrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 15px;
-
-
+    padding: 1em
 }
 
 .card {
     position: relative;
     width: 200px;
+    background: rgb(20, 18, 20);
     max-height: 400px;
     text-align: center;
-    background-color: rgb(3, 3, 26);
     border-radius: 1em;
+    margin: 1em;
     color: aliceblue;
     box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
@@ -270,12 +304,14 @@ label {
 
 .cardImg {
     max-width: 100%;
-    /* object-fit: scale-down; */
     border-radius: 1em;
 }
 
 .addElCard {
-    background-color: green;
+    background: rgb(56, 35, 60);
+    background: radial-gradient(circle, rgba(56, 35, 60, 1) 0%, rgba(3, 3, 26, 1) 72%);
+    color: aliceblue;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -296,14 +332,23 @@ label {
 @media (min-width: 768px) {
     .actions {
         text-align: left;
-        margin-left: 2em;
+        margin-left: 1em;
         margin-bottom: 2em;
+        font-size: 1rem;
     }
 
     .modalWrap {
         flex-direction: row;
-        justify-content: space-between;
+        gap: 10px;
+        max-height: 300px;
+    }
 
+    .modal {
+        max-width: 600px;
+    }
+
+    .mainModal {
+        max-height: 500px;
     }
 
     .modal p {
@@ -311,11 +356,21 @@ label {
         line-height: 1.3em;
     }
 
-    .modal .modalImage {
-        width: 250px;
-        border-radius: 1em 0 0 1em;
+    .modal h2 {
+        font-size: 2rem;
     }
 
+    .modal h3 {
+        font-size: 2rem;
+    }
+
+    .modal .modalImage {
+        width: 100%;
+        object-fit: cover;
+        max-height: 100%;
+        border-radius: 1em 0 0 1em;
+        justify-self: flex-start;
+    }
 
     .closeBtn {
         top: 10px;
@@ -330,6 +385,11 @@ label {
         position: relative;
         perspective: 1000px;
         align-items: stretch;
+    }
+
+    .checkboxGroup {
+        width: 90%;
+        margin: 10px auto 0 auto;
     }
 
 }

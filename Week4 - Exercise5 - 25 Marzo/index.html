@@ -10,74 +10,75 @@
 
   <body>
     <header>
-      <h1>Movies Collection</h1>
+      <img src="logo.png" alt="Movies Collection">
+      <hr>
     </header>
     <div id="overlay"></div>
+    <form>
+      <h2>Aggiungi alla tua collezione:</h2>
+      
+      <div class="inputGroup">
+
+        <div class="flex-item">
+          <label for="title">Titolo</label>
+          <input type="text" name="title" id="title">
+        </div>
+
+        <div class="flex-item">
+          <label for="description">Descrizione</label>
+          <input type="text" name="description" id="description">  
+        </div>
+      </div>
+
+      <div class="inputGroup">
+        <div class="flex-item">
+          <label for="year">Anno</label>
+          <input type="text" name="year" id="year">
+        </div>
+        
+        <div class="flex-item">
+          <label for="poster">Poster</label>
+          <input type="text" name="poster" id="poster">
+        </div>
+        
+      </div>        
+      
+      <div class="checkboxGroup">
+
+        <fieldset>
+          <legend>Di che genere di film si tratta?</legend>
+
+          <div class="checkItem">
+            <label for="action">Azione</label>
+            <input type="checkbox" id="action" name="action" value="Azione">            
+          </div>
+
+          <div class="checkItem">
+            <label for="comedy">Commedia</label>
+            <input type="checkbox" id="comedy" name="comedy" value="Commedia">                 
+          </div>
+
+          <div class="checkItem">
+            <label for="fantasy">Fantasy</label>
+            <input type="checkbox" id="fantasy" name="fantasy" value="Fantasy">                  
+          </div>
+
+          <div class="checkItem">
+            <label for="cinecomic">Cinecomic</label>
+            <input type="checkbox" id="cinecomic" name="cinecomic" value="Cinecomic">
+          </div>
+          
+
+
+        </fieldset>
+      </div>
+      <div class="actionsDiv">
+        <input type="submit" id="submit" value="Aggiungi">
+        <button class="closeFormBtn">Annulla</button>
+      </div>
+    </form>
 
     <div class="pageWrapper">
-      <form>
-        <h2>Aggiungi alla tua collezione:</h2>
-        
-        <div class="inputGroup">
-
-          <div class="flex-item">
-            <label for="title">Titolo</label>
-            <input type="text" name="title" id="title">
-          </div>
-  
-          <div class="flex-item">
-            <label for="description">Descrizione</label>
-            <input type="text" name="description" id="description">  
-          </div>
-        </div>
-
-        <div class="inputGroup">
-          <div class="flex-item">
-            <label for="year">Anno</label>
-            <input type="text" name="year" id="year">
-          </div>
-          
-          <div class="flex-item">
-            <label for="poster">Poster</label>
-            <input type="text" name="poster" id="poster">
-          </div>
-          
-        </div>        
-        
-        <div class="checkboxGroup">
-
-          <fieldset>
-            <legend>Di che genere di film si tratta?</legend>
-
-            <div class="checkItem">
-              <label for="action">Azione</label>
-              <input type="checkbox" id="action" name="action" value="Azione">            
-            </div>
-
-            <div class="checkItem">
-              <label for="comedy">Commedia</label>
-              <input type="checkbox" id="comedy" name="comedy" value="Commedia">                 
-            </div>
-
-            <div class="checkItem">
-              <label for="fantasy">Fantasy</label>
-              <input type="checkbox" id="fantasy" name="fantasy" value="Fantasy">                  
-            </div>
-
-            <div class="checkItem">
-              <label for="cinecomic">Cinecomic</label>
-              <input type="checkbox" id="cinecomic" name="cinecomic" value="Cinecomic">
-            </div>
-            
-
-
-          </fieldset>
-        </div>
-
-        <input type="submit" id="submit" value="Aggiungi">
-      </form>
-
-      
       <div class="cardsWrapper">
         <div class="card addElCard">Aggiungi un film +</div>
       </div>

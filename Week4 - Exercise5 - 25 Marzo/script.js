@@ -13,8 +13,6 @@ const posterInput = q("#poster");
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
 
 
-
-
 getMoviesAPI("https://edgemony-backend.herokuapp.com/movies")
   .then((data) => {
     data.map((obj) =>
@@ -26,7 +24,7 @@ getMoviesAPI("https://edgemony-backend.herokuapp.com/movies")
     /* -------------------------------------------------------------------------- */
     /*                                 Open Modal                                 */
     /* -------------------------------------------------------------------------- */
-    const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.cardMovie');
     cards.forEach(card => {
       card.addEventListener("click", () => {
 
@@ -39,7 +37,7 @@ getMoviesAPI("https://edgemony-backend.herokuapp.com/movies")
           `
         <div class="modalWrap">
           <img class="modalImage" src="${card.getAttribute("data-img")}">
-          <div>
+          <div class="mainModal">
             <h2>${card.getAttribute("data-title")}</h2>
             <p><strong>Descrizione: </strong>${card.getAttribute("data-desc")}</p>
             <p><strong>Anno: </strong>${card.getAttribute("data-year")}</p>
@@ -205,8 +203,21 @@ getMoviesAPI("https://edgemony-backend.herokuapp.com/movies")
 /*                                Add new Card                                */
 /* -------------------------------------------------------------------------- */
 
+const newMovieForm = q("form");
+const closeFormBtn = q(".closeFormBtn");
+const addCardBtn = q(".addElCard");
+
+addCardBtn.addEventListener("click", () => {
+  newMovieForm.classList.add("visible");
+  overlay.classList.add("visible");
+})
+closeFormBtn.addEventListener("click", () => {
+  newMovieForm.classList.remove("visible");
+})
+
 submitInput.addEventListener("click", (event) => {
   event.preventDefault();
+  newMovieForm.classList.remove("visible");
   let genresArray = [];
   checkboxes.forEach(checkbox => {
     if (checkbox.checked) {
