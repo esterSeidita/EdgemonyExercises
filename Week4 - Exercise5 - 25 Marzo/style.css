@@ -73,6 +73,11 @@ button:hover {
     max-height: 90%;
 }
 
+.modal h2 {
+    text-align: center;
+    margin-top: 1em;
+}
+
 .modal h3 {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -101,6 +106,36 @@ button:hover {
     background-color: green;
 
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              Update Form Modal                             */
+/* -------------------------------------------------------------------------- */
+
+.modal.updateFormModal {
+    flex-direction: column;
+    padding: 2em;
+}
+
+.modal .flexItem>label {
+    display: block;
+}
+
+.modal .checkItem>label {
+    display: inline-block;
+}
+
+.modal .checkItem {
+    display: inline-block;
+    margin-left: 4em;
+}
+
+.modal fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
 
 
 
@@ -172,7 +207,20 @@ label {
     background-color: rgb(3 3 26);
     border: none;
     color: aliceblue;
+}
 
+.checkboxGroup {
+    width: 80%;
+    margin-top: 10px;
+}
+
+.checkboxGroup label {
+    /* display: inline-block; */
+}
+
+.checkItem {
+    margin: 0.5em;
+    display: inline-block;
 }
 
 
@@ -181,6 +229,9 @@ label {
 /* -------------------------------------------------------------------------- */
 /*                                    Cards                                   */
 /* -------------------------------------------------------------------------- */
+
+
+
 .cardsWrapper {
     display: flex;
     flex-wrap: wrap;
@@ -201,6 +252,7 @@ label {
     -webkit-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
     cursor: pointer;
+    transition: all 0.8s ease-out;
 
 }
 
@@ -216,12 +268,21 @@ label {
     margin-bottom: 2em;
 }
 
-
-
 .cardImg {
     max-width: 100%;
     /* object-fit: scale-down; */
     border-radius: 1em;
+}
+
+.addElCard {
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1em;
+    line-height: 1.5em;
+
 }
 
 
@@ -251,7 +312,7 @@ label {
     }
 
     .modal .modalImage {
-        width: 150px;
+        width: 250px;
         border-radius: 1em 0 0 1em;
     }
 

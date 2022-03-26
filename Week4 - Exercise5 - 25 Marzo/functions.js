@@ -15,7 +15,7 @@ const getMoviesAPI = async (URL) => {
     return res.json();
 }
 
-const createCard = (title, description, poster, year, id) => {
+const createCard = (title, description, poster, year, genres, id) => {
     const divEl = c('div');
     const h3El = c('h3');
     const imgEl = c('img');
@@ -23,9 +23,16 @@ const createCard = (title, description, poster, year, id) => {
     imgEl.setAttribute('src', poster);
 
     divEl.classList.add("card");
+    divEl.setAttribute("data-title", title);
     divEl.setAttribute("data-desc", description);
     divEl.setAttribute("data-img", poster);
     divEl.setAttribute("data-year", year);
+    if (Array.isArray(genres)) {
+        divEl.setAttribute("data-genres", genres.join(", "));
+    } else {
+        divEl.setAttribute("data-genres", genres);
+    }
+
     divEl.id = id;
 
     imgEl.classList.add("cardImg");
@@ -34,11 +41,4 @@ const createCard = (title, description, poster, year, id) => {
 
     divEl.append(imgEl, h3El);
     wrapper.appendChild(divEl);
-    return {
-        title,
-        description,
-        poster,
-        year,
-        id
-    };
 }
