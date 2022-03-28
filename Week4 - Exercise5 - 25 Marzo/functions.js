@@ -21,7 +21,13 @@ const yearInput = q("#year");
 const posterInput = q("#poster");
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
 
+/* -------------------------------------------------------------------------- */
+/*                 Max length function for reduce text length                 */
+/* -------------------------------------------------------------------------- */
 
+function maxLength(maxChar, text) {
+    return text.split("").slice(0, maxChar).join("");
+}
 
 /* -------------------------------------------------------------------------- */
 /*                               Fetch Function                               */
@@ -70,11 +76,10 @@ function modalGenerator(poster, title, description, year, genres) {
 
     modal.innerHTML =
         `
-        <div class="modalWrap">
           <img class="modalImage" src="${poster}">
           <div class="mainModal">
             <h2>${title}</h2>
-            <p><strong>Descrizione: </strong>${description}</p>
+            <p><strong>Descrizione: </strong>${maxLength(180, description)}</p>
             <p><strong>Anno: </strong>${year}</p>
             <p><strong>Generi: </strong>${genres}</p>
             <div class="actions">
@@ -83,7 +88,6 @@ function modalGenerator(poster, title, description, year, genres) {
               <button class="updateCardBtn">Update</button>
             </div>
           </div>
-        </div>
         `;
 
     document.body.prepend(modal);
@@ -103,6 +107,7 @@ function modalGenerator(poster, title, description, year, genres) {
 /* -------------------------------------------------------------------------- */
 
 function modalUpdateGenerator(poster, title, description, year, genres, id) {
+    console.log("🚀 ~ file: functions.js ~ line 104 ~ modalUpdateGenerator ~ genres", genres)
 
     const modal = q(".modal");
 
@@ -145,22 +150,22 @@ function modalUpdateGenerator(poster, title, description, year, genres, id) {
         <legend>Di che genere di film si tratta?</legend>
 
         <div class="checkItem">
-        <input type="checkbox" id="action" name="action" value="Azione">            
+        <input type="checkbox" id="action" name="action" value="action">            
         <label for="action">Azione</label>
         </div>
 
         <div class="checkItem">
-        <input type="checkbox" id="comedy" name="comedy" value="Commedia">                 
+        <input type="checkbox" id="comedy" name="comedy" value="comedy">                 
         <label for="comedy">Commedia</label>
         </div>
 
         <div class="checkItem">
-        <input type="checkbox" id="fantasy" name="fantasy" value="Fantasy">                  
+        <input type="checkbox" id="fantasy" name="fantasy" value="fantasy">                  
         <label for="fantasy">Fantasy</label>
         </div>
 
         <div class="checkItem">
-        <input type="checkbox" id="cinecomic" name="cinecomic" value="Cinecomic">
+        <input type="checkbox" id="cinecomic" name="cinecomic" value="cinecomic">
         <label for="cinecomic">Cinecomic</label>
         </div>
       </fieldset>
@@ -174,34 +179,49 @@ function modalUpdateGenerator(poster, title, description, year, genres, id) {
     const titleInputUpd = q("#titleUpdate");
     const yearInputUpd = q("#yearUpdate");
     const posterInputUpd = q("#posterUpdate");
-    const checkboxesUpd = document.querySelectorAll("input[type='checkbox']");
+    const checkboxesUpd = document.querySelectorAll(".updateFormModal input[type='checkbox']");
     let checkArrayUpdated = [];
 
     checkboxesUpd.forEach(checkbox => {
-        if (checkbox.checked) {
-            checkArrayUpdated.push(checkbox.value);
-        }
+        genres.forEach(genre => {
+            if (checkbox.value.toLowerCase() === genre.toLowerCase()) {
+                checkbox.checked = true;
+            }
+        })
     })
 
+
+
+    console.log(checkArrayUpdated);
     const submitUpdate = q('#submitUpdate');
     submitUpdate.addEventListener("click", () => {
 
-        fetch(`https://edgemony-backend.herokuapp.com/movies/${card.id}`, {
-                method: "PATCH",
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                body: JSON.stringify({
-                    id: card.id,
-                    title: titleInputUpd.value,
-                    poster: posterInputUpd.value,
-                    year: yearInputUpd.value,
-                    description: descriptionInputUpd.value
-                }) //fetch body end
-            }) //fetch end
-            .then(() => {
-                location.reload()
-            }) // reload end
+        checkboxesUpd.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkArrayUpdated.push(checkbox.value);
+            }
+        })
+        try {
+            fetch(`https://edgemony-backend.herokuapp.com/movies/${id}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        title: titleInputUpd.value,
+                        poster: posterInputUpd.value,
+                        year: yearInputUpd.value,
+                        genres: checkArrayUpdated,
+                        description: descriptionInputUpd.value,
+                    }) //fetch body end
+                }) //fetch end
+                .then(() => {
+                    location.reload()
+                }) // reload end
+        } catch (error) {
+            alert("Errore: " + error);
+        }
 
     }) // submit update click end
 
@@ -222,15 +242,17 @@ function modalUpdateGenerator(poster, title, description, year, genres, id) {
 
 function createNewCard() {
     const newMovieForm = q("form");
-    const closeFormBtn = q(".closeFormBtn");
     const addCardBtn = q(".addElCard");
 
     addCardBtn.addEventListener("click", () => {
         newMovieForm.classList.add("visible");
         overlay.classList.add("visible");
     })
-    closeFormBtn.addEventListener("click", () => {
+
+    overlay.addEventListener("click", () => {
         newMovieForm.classList.remove("visible");
+        overlay.classList.remove("visible");
+
     })
 
     submitInput.addEventListener("click", (event) => {
@@ -243,18 +265,22 @@ function createNewCard() {
                 genresArray.push(checkbox.value);
             }
         })
-        fetch("https://edgemony-backend.herokuapp.com/movies/", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                description: descriptionInput.value,
-                genres: genresArray,
-                poster: posterInput.value,
-                title: titleInput.value,
-                year: yearInput.value
-            })
-        }).then(() => location.reload())
-    });
+        try {
+            fetch("https://edgemony-backend.herokuapp.com/movies/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    description: descriptionInput.value,
+                    genres: genresArray,
+                    poster: posterInput.value,
+                    title: titleInput.value,
+                    year: yearInput.value
+                })
+            }).then(() => location.reload())
+        } catch (error) {
+            console.log("Errore: " + error);
+        }
+    }); //submit click end..
 }

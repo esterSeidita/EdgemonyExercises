@@ -22,6 +22,8 @@ button, #submit, #submitUpdate {
     color: aliceblue;
     cursor: pointer;
     transition: all 0.5s ease-out;
+    font-weight: bolder;
+    text-transform: uppercase;
 }
 
 button:hover, #submit:hover, #submitUpdate:hover {
@@ -153,16 +155,12 @@ header h1 {
     display: flex !important;
 }
 
-.modalWrap {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-
 .modal {
     display: flex;
+    flex-direction: column;
     box-shadow: 0 0 3px rgb(3, 3, 26);
     position: fixed;
+    gap: 5px;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
@@ -170,7 +168,7 @@ header h1 {
     text-align: left;
     border-radius: 1em;
     z-index: 150;
-    max-height: 90%;
+    height: 90%;
     width: 75%;
 }
 
@@ -180,7 +178,7 @@ header h1 {
 
 .modal h2 {
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-top: 1em;
 }
 
@@ -198,27 +196,22 @@ header h1 {
 .modal .modalImage {
     width: 100%;
     object-fit: cover;
-    max-height: 35%;
+    object-position: 50% 10%;
+    height: 150px;
     border-radius: 1em 1em 0 0;
 }
-
 
 .actions {
     margin-left: 10px;
     font-size: 0.8rem;
 }
 
-
-
-
 .deleteCardBtn {
     background-color: brown;
-
 }
 
 .updateCardBtn {
     background-color: green;
-
 }
 
 /* -------------------------------------------------------------------------- */
@@ -227,32 +220,33 @@ header h1 {
 
 .modal.updateFormModal {
     flex-direction: column;
-    padding: 0;
-}
+    text-align: center;
+    background-color: #dee1f2;
 
-.modal .flexItem>label {
-    display: block;
 }
 
 .modal .checkItem>label {
     display: inline-block;
 }
 
-.modal .checkItem {
-    display: inline-block;
-    margin-left: 1em;
+.checkItem {
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    align-content: flex-end;
+    justify-content: space-between;
 }
 
 .modal fieldset {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     border: none;
 }
 
 #submitUpdate {
     background-color: black;
-    margin-bottom: 1em;
+    margin: 1em;
 }
 
 
@@ -262,12 +256,11 @@ header h1 {
 
 form {
     padding: 2em 0;
-    margin: 1em;
-    gap: 20px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     width: 90%;
+    align-items: center;
     max-width: 1000px;
     text-align: center;
     border: 3px solid rgb(3 3 26);
@@ -279,19 +272,29 @@ form {
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
-    background-color: aliceblue;
+    background-color: #dee1f2;
+}
+
+input[type="text"] {
+    border: none;
+    padding: 2px;
+    border-radius: 5px;
 }
 
 .inputGroup {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 label {
     display: block;
     line-height: 20px;
+}
+
+fieldset label {
+    display: inline-block;
 }
 
 #submit, .closeFormBtn {
@@ -312,20 +315,55 @@ label {
     margin: 10px auto;
 }
 
-.checkItem {
-    margin: 0.5em;
-    display: inline-block;
-}
-
-
-
 
 
 /* -------------------------------------------------------------------------- */
 /*                                 Responsive                                 */
 /* -------------------------------------------------------------------------- */
 
-@media (min-width: 450px) {}
+@media (min-width: 425px) {
+
+    .modal {
+        height: 80%;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    .modal fieldset {
+        flex-flow: row wrap;
+        border: 1px solid black;
+        padding: 1.5em;
+    }
+
+    .checkItem {
+        display: inline-flex;
+        flex-flow: row-reverse wrap;
+        align-items: baseline;
+        justify-content: flex-end;
+        width: 49%;
+    }
+
+    .checkItem label {
+        margin-left: 5px;
+    }
+
+    #submitUpdate {
+        margin: 1em auto;
+        padding: 0.8em;
+    }
+}
+
+@media (min-width:550px) {
+    .modal h2 {
+        font-size: 2rem;
+    }
+
+    label {
+        font-size: 1.1rem;
+    }
+}
 
 @media (min-width: 768px) {
     .actions {
@@ -335,24 +373,23 @@ label {
         font-size: 1rem;
     }
 
-    .modalWrap {
-        flex-direction: row;
-        gap: 10px;
-        max-height: 300px;
+    form {
+        gap: 15px;
+    }
+
+    .inputGroup {
+        gap: 20px
     }
 
     .modal {
-        max-width: 600px;
-        height: auto;
+        flex-direction: row;
+        width: 700px;
+        height: 350px;
     }
 
     .modal p {
         font-size: 1rem;
         line-height: 1.1em;
-    }
-
-    .modal h2 {
-        font-size: 2rem;
     }
 
     .modal h3 {
@@ -362,7 +399,7 @@ label {
     .modal .modalImage {
         width: 100%;
         object-fit: cover;
-        max-height: 100%;
+        height: 100%;
         border-radius: 1em 0 0 1em;
         justify-self: flex-start;
     }
