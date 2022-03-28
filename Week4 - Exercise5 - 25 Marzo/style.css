@@ -12,7 +12,7 @@
 body {
     font-family: 'Josefin Sans', sans-serif;
     scroll-behavior: smooth;
-    background-color: white;
+    background-color: rgb(63 81 181 / 17%);
 }
 
 button, #submit, #submitUpdate {
@@ -28,6 +28,107 @@ button:hover, #submit:hover, #submitUpdate:hover {
     transform: scale(1.1);
     opacity: 0.9;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                    Main                                    */
+/* -------------------------------------------------------------------------- */
+
+
+header {
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+header>img {
+    width: 130px;
+}
+
+
+header h1 {
+    opacity: 1;
+    color: rgb(224, 224, 224);
+}
+
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 2em;
+    position: relative;
+    perspective: 1000px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    Cards                                   */
+/* -------------------------------------------------------------------------- */
+
+
+
+.cardsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 1em
+}
+
+.card {
+    position: relative;
+    width: 200px;
+    background: rgb(20, 18, 20);
+    max-height: 400px;
+    text-align: center;
+    border-radius: 1em;
+    margin: 1em;
+    color: aliceblue;
+    box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+    transition: all 0.8s ease-out;
+
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card h3 {
+    margin: 1em auto;
+}
+
+.card p {
+    margin-bottom: 2em;
+}
+
+.cardImg {
+    max-width: 100%;
+    border-radius: 1em;
+}
+
+.addElCard {
+    background: rgb(56, 35, 60);
+    background: radial-gradient(circle, rgba(56, 35, 60, 1) 0%, rgba(3, 3, 26, 1) 72%);
+    color: aliceblue;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1em;
+    line-height: 1.5em;
+
+}
+
 
 /* -------------------------------------------------------------------------- */
 /*                                    Modal                                   */
@@ -155,42 +256,6 @@ button:hover, #submit:hover, #submitUpdate:hover {
 }
 
 
-
-/* -------------------------------------------------------------------------- */
-/*                                    Main                                    */
-/* -------------------------------------------------------------------------- */
-
-
-header {
-    background-size: cover;
-    background-position: center;
-    z-index: -2;
-    text-align: center;
-}
-
-header>img {
-    width: 130px;
-}
-
-
-header h1 {
-    opacity: 1;
-    color: rgb(224, 224, 224);
-}
-
-.pageWrapper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-bottom: 2em;
-    position: relative;
-    perspective: 1000px;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-}
-
 /* -------------------------------------------------------------------------- */
 /*                                    Form                                    */
 /* -------------------------------------------------------------------------- */
@@ -244,11 +309,7 @@ label {
 
 .checkboxGroup {
     width: 80%;
-    margin-top: 10px;
-}
-
-.checkboxGroup label {
-    /* display: inline-block; */
+    margin: 10px auto;
 }
 
 .checkItem {
@@ -257,69 +318,6 @@ label {
 }
 
 
-
-
-/* -------------------------------------------------------------------------- */
-/*                                    Cards                                   */
-/* -------------------------------------------------------------------------- */
-
-
-
-.cardsWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 1em
-}
-
-.card {
-    position: relative;
-    width: 200px;
-    background: rgb(20, 18, 20);
-    max-height: 400px;
-    text-align: center;
-    border-radius: 1em;
-    margin: 1em;
-    color: aliceblue;
-    box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 44px -10px rgba(0, 0, 0, 0.75);
-    cursor: pointer;
-    transition: all 0.8s ease-out;
-
-}
-
-.card:hover {
-    transform: scale(1.1);
-}
-
-.card h3 {
-    margin: 1em auto;
-}
-
-.card p {
-    margin-bottom: 2em;
-}
-
-.cardImg {
-    max-width: 100%;
-    border-radius: 1em;
-}
-
-.addElCard {
-    background: rgb(56, 35, 60);
-    background: radial-gradient(circle, rgba(56, 35, 60, 1) 0%, rgba(3, 3, 26, 1) 72%);
-    color: aliceblue;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    padding: 1em;
-    line-height: 1.5em;
-
-}
 
 
 
@@ -345,15 +343,12 @@ label {
 
     .modal {
         max-width: 600px;
-    }
-
-    .mainModal {
-        max-height: 500px;
+        height: auto;
     }
 
     .modal p {
         font-size: 1rem;
-        line-height: 1.3em;
+        line-height: 1.1em;
     }
 
     .modal h2 {
