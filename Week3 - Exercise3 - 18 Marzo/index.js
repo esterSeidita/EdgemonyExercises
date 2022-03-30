@@ -1,21 +1,4 @@
 /* -------------------------------------------------------------------------- */
-/*                                  Fetch API                                 */
-/* -------------------------------------------------------------------------- */
-//  const getAPIdata = async(URL, item = '') => {
-//    const res = await fetch(`${URL}${item}`);
-//    return await res.json();
-//  }
-
-//  getAPIdata('https://swapi.dev/api/people').then((dataPerson)=> {
-//    console.log(dataPerson.results.map((person) => `${person.name} - ${person.homeworld}`));
-//    getAPIdata(dataPerson.homeworld).then((dataPlanet) => {
-//     console.log(dataPlanet.results.map((planet) => `${planet.name}`))
-//    })
-
-// });
-//  console.log("🚀 ~ file: index.js ~ line 20 ~ peopleData", peopleData)
-
-/* -------------------------------------------------------------------------- */
 /*                            Costanti e Variabili                            */
 /* -------------------------------------------------------------------------- */
 
@@ -56,7 +39,6 @@ q("#add").addEventListener("click", () => {
 
 filter.addEventListener("keyup", () => {
   let val = q("#search").value;
-  localStorage.setItem("char", JSON.stringify(localCharacters));
   cardsGenerator(val);
 });
 
@@ -64,7 +46,8 @@ filter.addEventListener("keyup", () => {
 /*                               Cards Generator                              */
 /* -------------------------------------------------------------------------- */
 
-function cardsGenerator(val = "", array) {
+function cardsGenerator(val = "") {
+
   const localCharacters = JSON.parse(localStorage.getItem("char"));
 
   let finalArray = [];
@@ -88,7 +71,7 @@ function cardsGenerator(val = "", array) {
     cards.innerHTML = "Nessun risultato trovato";
   }
 
-  // Delete Cards
+  // DELETE CARDS //
 
   const deleteBtn = document.querySelectorAll(".deleteBtn");
 
@@ -99,9 +82,13 @@ function cardsGenerator(val = "", array) {
       localStorage.setItem("char", JSON.stringify(localCharacters));
       cardsGenerator();
     });
-  });
-}
+  }); //End of delete card..
 
-// End of function
+} // End of function..
+
+
+if (JSON.parse(localStorage.getItem("char")) === null) {
+  localStorage.setItem("char", JSON.stringify(characters));
+}
 
 cardsGenerator();
