@@ -12,12 +12,29 @@
 body {
     font-family: 'Josefin Sans', sans-serif;
     scroll-behavior: smooth;
+
 }
 
 header {
     padding: 2em;
     background-color: rgb(1, 15, 29);
     color: aliceblue;
+}
+
+#loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em;
+    font-size: 2rem;
+    color: #20263f;
+    border-radius: 0.5em;
+}
+
+#loader img {
+    position: relative;
+    top: 30px;
 }
 
 .wrapper {

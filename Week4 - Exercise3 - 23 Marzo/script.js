@@ -3,14 +3,17 @@ const q = (selector) => document.querySelector(selector);
 const wrapper = q(".wrapper");
 
 
-const getAPI = async(URL) => {
+const getAPI = async (URL) => {
   const res = await fetch(URL);
   return await res.json();
 }
-
+loader.style.display = 'block';
 getAPI("https://fakestoreapi.com/products").then((data) => {
   createCard(data);
+  loader.style.display = 'none';
 })
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                            Create Card Function                            */
@@ -21,8 +24,8 @@ const createCard = (data) => {
 
   // Element creation
   wrapper.innerHTML =
-  data.map((obj, index) => 
-  `<div class="singleCard">
+    data.map((obj, index) =>
+      `<div class="singleCard">
   <img class="deleteBtn" id="${index}" src="closeBtn.png">
       <div class="num${index} frontCard">
         <img class="productImage" src="${obj.image}">
@@ -34,7 +37,7 @@ const createCard = (data) => {
         <p class="description">${obj.description}</p>
       </div>
   </div>`).join("");
-  
+
 
   // Delete Cards
 
@@ -48,7 +51,7 @@ const createCard = (data) => {
     });
 
   });
-  
+
   // Description on click -- with button
 
   // const descriptionBtn = document.querySelectorAll(".showDescriptionBtn");
@@ -69,7 +72,7 @@ const createCard = (data) => {
   // })
 
   // Description on click
-  
+
   const cards = document.querySelectorAll(".singleCard");
 
   function flipCard() {
@@ -77,9 +80,6 @@ const createCard = (data) => {
   }
 
   cards.forEach((card) => {
-    card.addEventListener("click",  flipCard)
+    card.addEventListener("click", flipCard)
   })
 }
-
-
-
