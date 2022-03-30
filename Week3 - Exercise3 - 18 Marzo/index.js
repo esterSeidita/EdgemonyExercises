@@ -1,33 +1,23 @@
-const people = [
-  "Luke Skywalker - Star Wars",
-  "Jack Burton - Grosso guaio a Chinatown",
-  "Jhonny Silverhad - Cyberpunk 2077",
-  "Bilbo Baggins - Il signore degli anelli",
-  "Rick Sanchez - Rick & Morty",
-  "Master Chief - Halo",
-  "Eleven - Stranger Things",
-];
-
 /* -------------------------------------------------------------------------- */
 /*                                  Fetch API                                 */
 /* -------------------------------------------------------------------------- */
-    //  const getAPIdata = async(URL, item = '') => {
-    //    const res = await fetch(`${URL}${item}`);
-    //    return await res.json();
-    //  }
-     
-    //  getAPIdata('https://swapi.dev/api/people').then((dataPerson)=> {
-    //    console.log(dataPerson.results.map((person) => `${person.name} - ${person.homeworld}`));
-    //    getAPIdata(dataPerson.homeworld).then((dataPlanet) => {
-    //     console.log(dataPlanet.results.map((planet) => `${planet.name}`))
-    //    })
+//  const getAPIdata = async(URL, item = '') => {
+//    const res = await fetch(`${URL}${item}`);
+//    return await res.json();
+//  }
 
-    // });
-    //  console.log("🚀 ~ file: index.js ~ line 20 ~ peopleData", peopleData)
-    
-  /* -------------------------------------------------------------------------- */
-  /*                            Costanti e Variabili                            */
-  /* -------------------------------------------------------------------------- */
+//  getAPIdata('https://swapi.dev/api/people').then((dataPerson)=> {
+//    console.log(dataPerson.results.map((person) => `${person.name} - ${person.homeworld}`));
+//    getAPIdata(dataPerson.homeworld).then((dataPlanet) => {
+//     console.log(dataPlanet.results.map((planet) => `${planet.name}`))
+//    })
+
+// });
+//  console.log("🚀 ~ file: index.js ~ line 20 ~ peopleData", peopleData)
+
+/* -------------------------------------------------------------------------- */
+/*                            Costanti e Variabili                            */
+/* -------------------------------------------------------------------------- */
 
 const q = (selector) => document.querySelector(selector);
 
@@ -37,10 +27,15 @@ const filter = q("#search");
 const inputName = q("#name");
 const inputUniverse = q("#universe");
 
-
-
-const localCharacters = JSON.parse(localStorage.getItem("char"));
-localStorage.setItem("char", JSON.stringify(people));
+let characters = [
+  "Luke Skywalker - Star Wars",
+  "Jack Burton - Grosso guaio a Chinatown",
+  "Jhonny Silverhad - Cyberpunk 2077",
+  "Bilbo Baggins - Il signore degli anelli",
+  "Rick Sanchez - Rick & Morty",
+  "Master Chief - Halo",
+  "Eleven - Stranger Things",
+];
 
 
 /* -------------------------------------------------------------------------- */
@@ -48,8 +43,8 @@ localStorage.setItem("char", JSON.stringify(people));
 /* -------------------------------------------------------------------------- */
 
 q("#add").addEventListener("click", () => {
-  localCharacters.push([inputName.value, inputUniverse.value].join(" - "));
-  localStorage.setItem("char", JSON.stringify(localCharacters));
+  characters.push([inputName.value, inputUniverse.value].join(" - "));
+  localStorage.setItem("char", JSON.stringify(characters));
   cardsGenerator();
   inputName.value = "";
   inputUniverse.value = "";
@@ -70,6 +65,8 @@ filter.addEventListener("keyup", () => {
 /* -------------------------------------------------------------------------- */
 
 function cardsGenerator(val = "", array) {
+  const localCharacters = JSON.parse(localStorage.getItem("char"));
+
   let finalArray = [];
   const filteredCards = localCharacters.filter((card) =>
     card.toLowerCase().includes(val.toLowerCase())
@@ -83,7 +80,7 @@ function cardsGenerator(val = "", array) {
   cards.innerHTML = finalArray
     .map(
       (card, index) =>
-        `<div><img class="deleteBtn" data-index="${index}" src="closeBtn.png"><h3>${card[0]}</h3><p>${card[1]}</p></div>`
+      `<div><img class="deleteBtn" data-index="${index}" src="closeBtn.png"><h3>${card[0]}</h3><p>${card[1]}</p></div>`
     )
     .join("");
 
