@@ -10,6 +10,8 @@ import {
 
 let dataArray = [];
 
+loader.style.display = 'block';
+
 getMoviesAPI("https://edgemony-backend.herokuapp.com/movies")
   .then((data) => {
     dataArray = data;
@@ -17,6 +19,9 @@ getMoviesAPI("https://edgemony-backend.herokuapp.com/movies")
     data.map((obj, index) => {
       createCard(obj.title, obj.poster, index);
     })
+
+    loader.style.display = 'none';
+
   })
   .then(() => {
 
