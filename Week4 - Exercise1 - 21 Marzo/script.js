@@ -7,14 +7,39 @@ const container = q("#addressBook");
 
 const filter = q("#filter");
 
-const addresses = JSON.parse(localStorage.getItem("addresses"));
+let addresses = [];
+
+/* -------------------------------------------------------------------------- */
+/*                               Add New Contact                              */
+/* -------------------------------------------------------------------------- */
+
+newContactBtn.addEventListener("click", () => {
+  addresses.push({
+    name: nameInput.value,
+    surname: surnameInput.value,
+    number: numberInput.value,
+  });
+  localStorage.setItem("addresses", JSON.stringify(addresses));
+  addressListGenerator();
+});
+
+/* -------------------------------------------------------------------------- */
+/*                              Filter of Contact                             */
+/* -------------------------------------------------------------------------- */
+
+filter.addEventListener("keyup", () => {
+  addressListGenerator(filter.value);
+});
 
 /* -------------------------------------------------------------------------- */
 /*                           Address List Generator                           */
 /* -------------------------------------------------------------------------- */
 
 const addressListGenerator = (value = "") => {
-  const filteredList = addresses.filter((addressObj) =>
+
+  const localAddresses = JSON.parse(localStorage.getItem("addresses"));
+
+  const filteredList = localAddresses.filter((addressObj) =>
     addressObj.name.toLowerCase().includes(value.toLowerCase())
   );
   container.innerHTML = filteredList
@@ -53,26 +78,5 @@ const addressListGenerator = (value = "") => {
 
 // End of function
 
-/* -------------------------------------------------------------------------- */
-/*                               Add New Contact                              */
-/* -------------------------------------------------------------------------- */
-
-newContactBtn.addEventListener("click", () => {
-  addresses.push({
-    name: nameInput.value,
-    surname: surnameInput.value,
-    number: numberInput.value,
-  });
-  localStorage.setItem("addresses", JSON.stringify(addresses));
-  addressListGenerator();
-});
-
-/* -------------------------------------------------------------------------- */
-/*                              Filter of Contact                             */
-/* -------------------------------------------------------------------------- */
-
-filter.addEventListener("keyup", () => {
-  addressListGenerator(filter.value);
-});
 
 addressListGenerator();
