@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./normalize.css" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Rubrica</title>
+    <title>Calcolatrice</title>
   </head>
 
   <body>
-    <header>
-      <h1>Chiamate Asincrone</h1>
-      <hr />
-    </header>
+    <h1>Calcolatrice</h1>
+    <div class="calculatorWrapper">
+      <div class="screen"></div>
+      <div class="row">
+        <div class="number"><span>9</span></div>
+        <div class="number"><span>8</span></div>
+        <div class="number"><span>7</span></div>
+        <div class="operation"><span>+</span></div>
+      </div>
+      <div class="row">
+        <div class="number"><span>6</span></div>
+        <div class="number"><span>5</span></div>
+        <div class="number"><span>4</span></div>
+        <div class="operation"><span>-</span></div>
+      </div>
+      <div class="row">
+        <div class="number"><span>3</span></div>
+        <div class="number"><span>2</span></div>
+        <div class="number"><span>1</span></div>
+        <div class="operation"><span>*</span></div>
+      </div>
+      <div class="row">
+        <div class="number"><span>0</span></div>
+        <div class="number point"><span>.</span></div>
+        <div class="result"><span>=</span></div>
+        <div class="operation"><span>/</span></div>
+      </div>
+      <div class="lastRow">
+        <div class="clear">Clear</div>
+        <div class="back">Back</div>
+      </div>
+    </div>
 
-    <!-- <form> -->
-    <label for="firstOp">Primo operatore</label>
-    <input type="number" id="firstOp" />
 
-    <select name="operation" id="operation">
-      <option value="+">+</option>
-      <option value="*">*</option>
-      <option value="-">-</option>
-      <option value="/">/</option>
-    </select>
-    <label for="secondOp">Secondo operatore</label>
-    <input type="number" id="secondOp" />
 
-    <button id="resultBtn">Calcola</button>
-    <!-- </form> -->
-
-    <div class="resultDiv"></div>
     <script src="./script.js"></script>
   </body>
 </html>
