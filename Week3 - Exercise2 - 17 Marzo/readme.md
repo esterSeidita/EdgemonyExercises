@@ -1,12 +1,5 @@
 # Lezione del 17/03/2021
 
-### File presenti
-
-- `index.html` - solo per collegare i file di esempio
-- `index.js`, `two.js` - spiegazione/esempi sull closure
-- `filters.js` - introduzione al metodo filter
-- `ex1.html` - soluzione del primo esercizio della lezione precedente
-
 ### Esercizio
 
 Dato un array di film:
