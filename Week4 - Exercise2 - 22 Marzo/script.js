@@ -1,41 +1,51 @@
 const q = (selector) => document.querySelector(selector);
+const qAll = (selector) => document.querySelectorAll(selector);
 
-let firstOperator = q("#firstOp");
-let operation = q("#operation");
-let secondOperator = q("#secondOp");
-const resultBtn = q("#resultBtn");
-const resultDiv = q(".resultDiv");
+const numbers = qAll(".number");
+const operations = qAll(".operation");
+const screen = q(".screen");
+const resultBtn = q(".result");
+const clearBtn = q(".clear");
+const backBtn = q(".back");
 
-const calculator = (firstOperator, operation, secondOperator) => {
-  let result;
-  //   console.log(firstOperator - secondOperator);
-  if (operation === "+") result = firstOperator + secondOperator;
-  else if (operation === "-") result = firstOperator - secondOperator;
-  else if (operation === "/") result = firstOperator / secondOperator;
-  else if (operation === "*") result = firstOperator * secondOperator;
-  return result;
-};
+backBtn.addEventListener("click", () => {
+  const screenToArray = screen.textContent.split("");
+  screenToArray.pop();
+  screen.textContent = screenToArray.join("");
+})
+
+clearBtn.addEventListener("click", () => {
+  undo();
+})
+
+numbers.forEach(number => {
+  number.addEventListener("click", () => {
+    const value = number.textContent;
+    screen.textContent += value;  
+  }) 
+}); //end numbers foreach..
+
+operations.forEach(operation => {
+  operation.addEventListener("click", () =>{
+    const opValue = operation.textContent;
+    screen.textContent += opValue;
+  }) 
+})//end operations foreach
 
 resultBtn.addEventListener("click", () => {
-  const first = parseInt(firstOperator.value);
-  const op = operation.value;
-  const second = parseInt(secondOperator.value);
-  //   let time = 10;
+  const operationString = screen.textContent;
 
-  //   let int = setInterval(() => {
-  //     if (time === 0) {
-  //       clearInterval(int);
-  //     }
-  //     resultDiv.textContent = `Il risultato verrà mostrato tra: ${time}`;
-  //     time--;
-  //   }, 1000);
+  const array = operationString.split(/(?=[-+/*])|(?<=[-+/*])/g);
+  const firstNum = parseFloat(array[0]);
 
-  //   resultDiv.textContent = `Il risultato è: ${calculator(first, op, second)}`;
+  const operation = array[1];
+  const secondNum = parseFloat(array[2]);
+  
+  // if(operation==='+') screen.textContent= firstNum + secondNum;
 
-  setTimeout(() => {
-    resultDiv.textContent = `Il risultato è: ${calculator(first, op, second)}`;
-  }, 10000);
-});
+  screen.textContent = eval(`${firstNum}${operation}${secondNum}`);
+})
 
-//   resultDiv.textContent = `Il risultato è: ${calculator(first, op, second)}`;
-//   console.log(calculator(first, op, second));
+function undo () {
+  screen.textContent="";
+}
