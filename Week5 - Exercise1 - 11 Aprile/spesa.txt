@@ -1,0 +1,3 @@
+farina,1
+cacao,2
+prodotto:banane,quantità:2
