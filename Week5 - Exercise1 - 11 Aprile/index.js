@@ -1,22 +1,23 @@
 const fs = require("fs").promises;
+const data = require("./data.json");
 
 async function WriteFile(path, content){
     await fs.writeFile(path, content);
 }
 
-// async function ReadFile(file){
-//     const result = await fs.readFile(file);
-//     console.log(result.toString());
-// }
-
-async function WriteAndRead(path, content){
-    WriteFile(path, content);
-    // ReadFile(path);
-}
-
 const arguments = process.argv.slice(2);
 
-WriteAndRead("./index.html", `
+data.listElements.push(
+    {
+        product: arguments[0],
+        quantity: arguments[1]
+    }
+);
+
+WriteFile("./data.json", JSON.stringify(data));
+
+const htmlContent = 
+`
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,10 +25,10 @@ WriteAndRead("./index.html", `
     </head>
     <body>
         <ul>
-            ${arguments.map((item) => `<li>${item}</li>`).join("")}
+            ${data.listElements.map(({product, quantity}) => `<li>Prodotto: ${product}; Quantità: ${quantity}</li>`).join("\n\t\t\t")}
         </ul>
     </body>
 </html>
-`)
-
-
+`;
+        
+WriteFile("./index.html", htmlContent)
