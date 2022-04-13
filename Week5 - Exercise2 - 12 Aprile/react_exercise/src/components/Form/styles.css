@@ -1,0 +1,43 @@
+.form{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form h2{
+    padding: 1em;
+}
+
+label{
+    display: block;
+    text-align: left;
+    font-weight: 500;
+}
+
+input, textarea{
+    width: 100%;
+    background-color: #282c34;
+    border: none;
+    padding: 0.8em;
+    margin: 7px auto;
+    resize: none;
+    color: aliceblue;
+    border-radius: 5px;
+}
+
+button{
+    display: block;
+    background-color: #282c34;
+    transform: all 0.5s ease-out;
+    color: aliceblue;
+    border-radius: 5px;
+    padding: 0.8em;
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+textarea:hover, input:hover, button:hover{
+    transform: scale(1.02);
+    background-color: #3b414f;
+}
